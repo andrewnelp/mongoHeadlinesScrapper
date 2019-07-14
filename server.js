@@ -38,8 +38,8 @@ db.once("open", function () {
   console.log("Connected to Mongoose!");
 });
 
-// var routes = require("./controller/controller.js");
-// app.use("/", routes);
+const routes = require("./controller/controller.js");
+app.use("/", routes);
 //Create localhost port
 const port = process.env.PORT || 3000;
 app.listen(port, function () {
