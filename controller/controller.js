@@ -12,7 +12,7 @@ router.get("/", function (req, res) {
   res.redirect("/articles");
 });
 
-router.get("/scrape", function (req, res) {
+router.get("/scrape", (req, res) => {
   request("http://www.theverge.com", function (error, response, html) {
     let $ = cheerio.load(html);
     let titlesArray = [];
@@ -31,11 +31,11 @@ router.get("/scrape", function (req, res) {
         if (titlesArray.indexOf(result.title) == -1) {
           titlesArray.push(result.title);
 
-          Article.count({ title: result.title }, function (err, test) {
+          Article.count({ title: result.title },  (err, test) => {
             if (test === 0) {
-              var entry = new Article(result);
+              let entry = new Article(result);
 
-              entry.save(function (err, doc) {
+              entry.save((err, doc) => {
                 if (err) {
                   console.log(err);
                 } else {
@@ -54,14 +54,16 @@ router.get("/scrape", function (req, res) {
     res.redirect("/");
   });
 });
-router.get("/articles", function (req, res) {
+
+// finding articles
+router.get("/articles", (req, res) => {
   Article.find()
     .sort({ _id: -1 })
-    .exec(function (err, doc) {
+    .exec((err, doc) => {
       if (err) {
         console.log(err);
       } else {
-        var artcl = { article: doc };
+        let artcl = { article: doc };
         res.render("index", artcl);
       }
     });
@@ -78,7 +80,7 @@ router.get("/articles-json", function (req, res) {
 });
 
 router.get("/clearAll", function (req, res) {
-  Article.remove({}, function (err, doc) {
+  Article.remove({}, (err, doc) => {
     if (err) {
       console.log(err);
     } else {
@@ -89,8 +91,8 @@ router.get("/clearAll", function (req, res) {
 });
 
 router.get("/readArticle/:id", function (req, res) {
-  var articleId = req.params.id;
-  var hbsObj = {
+  let articleId = req.params.id;
+  let hbsObj = {
     article: [],
     body: []
   };
@@ -102,9 +104,9 @@ router.get("/readArticle/:id", function (req, res) {
         console.log("Error: " + err);
       } else {
         hbsObj.article = doc;
-        var link = doc.link;
-        request(link, function (error, response, html) {
-          var $ = cheerio.load(html);
+        let link = doc.link;
+        request(link, (error, response, html) => {
+          let $ = cheerio.load(html);
 
           $(".l-col__main").each(function (i, element) {
             hbsObj.body = $(this)
@@ -131,7 +133,7 @@ router.post("/comment/:id", function (req, res) {
 
   let newComment = new Comment(commentObj);
 
-  newComment.save(function (err, doc) {
+  newComment.save((err, doc) => {
     if (err) {
       console.log(err);
     } else {
@@ -142,7 +144,7 @@ router.post("/comment/:id", function (req, res) {
         { _id: req.params.id },
         { $push: { comment: doc._id } },
         { new: true }
-      ).exec(function (err, doc) {
+      ).exec((err, doc) => {
         if (err) {
           console.log(err);
         } else {
