@@ -1,5 +1,5 @@
 body {
-  background-size: 600px;
+  background-size: 700px;
   font-family: "Oswald", sans-serif;
   font-size: 16px;
   display: flex;
@@ -16,24 +16,24 @@ main {
   line-height: 150%;
 }
 #btnSignUp {
-  background-color: #635f60;
+  background-color: hsl(202, 33%, 40%);;
 }
 #nameComment {
   /*border-bottom: 2px solid #ec407a;*/
   font-weight: bold;
-  background: #635f60;
+  background: hsl(202, 33%, 40%);;
   color: white;
 }
 .input-field input[type="text"]:focus + label {
-  color: #635f60;
+  color: hsl(202, 33%, 40%);;
 }
 .input-field input[type="text"]:focus {
-  border-bottom: 1px solid #635f60;
+  border-bottom: 1px solid hsl(202, 33%, 40%);;
   box-shadow: 0 1px 0 0 #000;
 }
 .input-field .prefix.active {
   color: #635f60;
 }
 .topnav {
-  background-color: #635f60;
+  background-color: hsl(202, 33%, 40%);
 }

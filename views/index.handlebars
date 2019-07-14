@@ -1,8 +1,9 @@
 <div>
-  <h2 class="card z-depth-3 center-align">Read and Comment the Latest from 'The Verge'</h2>
+  <h3 class="card z-depth-5 center-align">Read the Latest News</h3>
   <div class="row">
     <div class="col s3"></div>
-    <h5 class="card z-depth-3 center-align col s6">Click 'Scrape' to get the latest articles</h5>
+    {{!-- <h5 class="card z-depth-3 center-align col s6">Click 'Scrape' to get the latest articles</h5> --}}
+    <a class=" bbb waves-effect waves-light btn orange lighten-1 z-depth-3" href="/scrape">Scrape <i class="material-icons">border_color</i></a>
   </div>
 </div>
 <div class="row">
@@ -11,7 +12,7 @@
     {{#each article}}
     <div class="card-panel">
       <h4>{{this.title}}</h4>
-      <a href="/readArticle/{{this._id}}" class="waves-effect waves-light btn" id="btnSignUp">Read Article</a>
+      <a href="/readArticle/{{this._id}}" class="waves-effect waves-light btn z-depth-3" id="btnSignUp">Read Article</a>
 
     </div>
 
