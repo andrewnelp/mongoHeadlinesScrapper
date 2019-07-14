@@ -28,7 +28,6 @@ app.engine(
 app.set("view engine", "handlebars");
 
 //connecting to MongoDB
-// mongoose.connect("mongodb://localhost/mongoHeadlines");
 const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
