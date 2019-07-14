@@ -85,7 +85,7 @@ router.get("/clearAll", function (req, res) {
       console.log("removed all articles");
     }
   });
-  res.redirect("/articles-json");
+  res.redirect("/articles");
 });
 
 router.get("/readArticle/:id", function (req, res) {
@@ -129,7 +129,7 @@ router.post("/comment/:id", function (req, res) {
     body: content
   };
 
-  var newComment = new Comment(commentObj);
+  let newComment = new Comment(commentObj);
 
   newComment.save(function (err, doc) {
     if (err) {
